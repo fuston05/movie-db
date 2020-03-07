@@ -1,23 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import {Route} from 'react-router-dom';
+
+//actions
+import {getData} from './actions/';
+
+//redux
+import {connect} from 'react-redux';
 
 //components
-import { MovieCont } from './components/MovieCont';
+import MovieCont from './components/MovieCont';
 import { Header } from './components/Header';
+import Loader from './components/Loader/Loader';
 
 //styles
+import './components/sass/index.scss';
 
+const App= props => {
 
-function App() {
-  const [showSidebar, setShowSidebar] = useState(false);
+  useEffect(() => {
+    //get initial movie list data on load
+    props.getData();
+  }, []);
 
   return (
 
-    <div className= 'app'>
-      <Header />
-      <MovieCont />
+    <div className= 'App'>
+      <Route path= '/'>
+        <Header />
+        {props.isLoading ? <Loader /> : null}
+        <MovieCont />
+      </Route>
+      {/* <Route path= '/'><MovieCont /></Route> */}
     </div>
 
   );
 }//end App
 
-export default App;
+  const mapStateToProps= state => {
+    return{
+      isLoading: state.isLoading
+    }
+  }//end mapStateToProps
+
+export default connect(
+  mapStateToProps,
+  {getData},
+  )(App);

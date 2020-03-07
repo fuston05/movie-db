@@ -3,11 +3,31 @@ import React from 'react';
 //components
 
 //styles
+import './sass/Movie.scss';
 
-export const Movie = () => {
+const Movie = ({ 
+  title, 
+  poster_path, 
+  original_language, 
+  release_date, 
+  vote_count 
+}) => {
   return (
-    <div className= 'moiveCont'>
-      Movie
-    </div>
-  )
+    <div className='movieCard'>
+      <div className= 'imageCont'>
+        <p><span className= 'infoLabel'>Votes: </span>{vote_count}</p>
+        {/* <img 
+          alt= 'movie image'
+          src= {poster_path}
+        /> */}
+      </div> {/* end imageCont */}
+      <div className= 'mainMovieInfo'>
+        <h2>{title}</h2>
+        <p><span className= 'infoLabel'>Release Date: </span>{release_date}</p>
+        <p><span className= 'infoLabel'>Language: </span>{original_language}</p>
+      </div> {/* end mainMovieInfo */}
+    </div> // end movieCard
+  )//end return
 }//end Movie
+
+export default Movie;
