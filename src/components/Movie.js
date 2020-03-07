@@ -7,7 +7,7 @@ import './sass/Movie.scss';
 
 const Movie = ({ 
   title, 
-  poster_path, 
+  poster, 
   original_language, 
   release_date, 
   vote_count 
@@ -16,10 +16,10 @@ const Movie = ({
     <div className='movieCard'>
       <div className= 'imageCont'>
         <p><span className= 'infoLabel'>Votes: </span>{vote_count}</p>
-        {/* <img 
+        <img 
           alt= 'movie image'
-          src= {poster_path}
-        /> */}
+          src= {poster}
+        />
       </div> {/* end imageCont */}
       <div className= 'mainMovieInfo'>
         <h2>{title}</h2>
