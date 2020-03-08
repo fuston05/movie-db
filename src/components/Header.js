@@ -3,10 +3,11 @@ import React from 'react';
 //components
 
 //styles
+import './sass/Header.scss';
 
 export const Header = () => {
   return (
-    <header>
+    <header className= 'header'>
       <h1>Movie Roulette</h1>
     </header>
   )

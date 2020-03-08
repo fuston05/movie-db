@@ -44,7 +44,7 @@ const MovieCont = props => {
               key={movie.id}
               poster= { `${posterBaseURL}${movie.poster_path}` }
               title={movie.title}
-              vote_count={movie.vote_count}
+              vote_average= {movie.vote_average}
               release_date={movie.release_date}
               original_language={movie.original_language}
               />) 

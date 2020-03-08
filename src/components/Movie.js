@@ -10,12 +10,12 @@ const Movie = ({
   poster, 
   original_language, 
   release_date, 
-  vote_count 
+  vote_average 
 }) => {
   return (
     <div className='movieCard'>
       <div className= 'imageCont'>
-        <p><span className= 'infoLabel'>Votes: </span>{vote_count}</p>
+        <div className= 'rating'>{vote_average}</div>
         <img 
           alt= 'movie image'
           src= {poster}
