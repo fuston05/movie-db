@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import MovieCont from './components/MovieCont';
 import { Header } from './components/Header';
 import Loader from './components/Loader/Loader';
+import MovieDetails from './components/MovieDetails';
 
 //styles
 import './components/sass/index.scss';
@@ -27,10 +28,16 @@ const App= props => {
     <div className= 'App'>
       <Route path= '/'>
         <Header />
-        {props.isLoading ? <Loader /> : null}
-        <MovieCont />
       </Route>
-      {/* <Route path= '/'><MovieCont /></Route> */}
+
+        <Route exact path= '/'>
+          {props.isLoading ? <Loader /> : null}
+          <MovieCont />
+        </Route>
+
+      <Route exact path= '/moviedetails/:id'>
+        <MovieDetails />
+      </Route>
     </div>
 
   );

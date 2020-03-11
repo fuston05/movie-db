@@ -1,0 +1,45 @@
+@import './vars.scss';
+@import './mix-ins.scss';
+
+.movieCard{
+  width: 20%;
+  min-width: 300px;
+  height: 45vh;
+  margin: 13px;
+  // background-color: green;
+  @include dFlex(column, flex-start, center);
+
+  .imageCont{
+    width: 30%;
+    height: 47%;
+    position: relative;
+
+    img{
+      width: 100%;
+    }
+
+    .rating{
+      @include dFlex(row, center, center);
+      border-radius: 50%;
+      box-shadow: 1px 1px 3px #000;
+      font-size: $pSize;
+      color: $pColor;
+      padding: 5%;
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background-color: $black;
+      height: 30px;
+      width: 30px;
+    }
+  }//end imageCont
+
+  .mainMovieInfo{
+    margin: 0;
+    padding: 1%;
+    width: 100%;
+    height: 50%;
+    z-index: 2;
+    // border: 1px solid red;
+  }//end mainMovieInfo
+}//end movieCont

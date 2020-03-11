@@ -41,16 +41,14 @@ const MovieCont = props => {
           props.movies.map(movie => {
             return (
               <Movie
+              movie= {movie}
               key={movie.id}
               poster= { `${posterBaseURL}${movie.poster_path}` }
-              title={movie.title}
-              vote_average= {movie.vote_average}
-              release_date={movie.release_date}
-              original_language={movie.original_language}
               />) 
             })//end map
           }
       </div> {/* end movieCont */}
+
       <div className='mainButtonCont'>
         <LoadButton />
         <RouletteButton />

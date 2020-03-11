@@ -1,0 +1,13 @@
+@import './mix-ins.scss';
+
+.mainCont{
+  @include dFlex(column, center, center);
+  width: 100%;
+  margin: 2% 0 0 0;
+
+  .movieCont{
+    @include dFlex(row, space-evenly, flex-start);
+    flex-wrap: wrap;
+  }//end movieCont
+
+}//end mainCont
