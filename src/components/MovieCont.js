@@ -4,7 +4,7 @@ import axios from 'axios';
 import {CREATION} from '../res/common';
 
 //redux
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 //utils
 import {axiosWithAuth} from '../utils/axiosWithAuth';
@@ -17,8 +17,9 @@ import { RouletteButton } from './RouletteButton';
 //styles
 import './sass/MovieCont.scss';
 
-const MovieCont = props => {
+const MovieCont = () => {
   const [posterBaseURL, setPosterBaseURL]= useState('');
+  const movies= useSelector(state => state.movies);
 
   useEffect(() => {
     axiosWithAuth('/configuration?', 3)
@@ -38,7 +39,7 @@ const MovieCont = props => {
     <div className='mainCont'>
       <div className='movieCont'>
         {//loop through movies list
-          props.movies.map(movie => {
+          movies.map(movie => {
             return (
               <Movie
               movie= {movie}
@@ -57,14 +58,4 @@ const MovieCont = props => {
   )
 }//end MovieCont
 
-const mapStateToProps = state => {
-  return {
-    movies: state.movies,
-    isLoading: state.isLoading
-  }
-}//end mapStateToProps
-
-export default connect(
-  mapStateToProps,
-  {}
-)(MovieCont);
+export default MovieCont;

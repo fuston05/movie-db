@@ -1,5 +1,6 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 
 import {connect} from 'react-redux';
 
@@ -7,10 +8,11 @@ import {connect} from 'react-redux';
 
 //styles
 
-const MovieDetails = (props) => {
+const MovieDetails = () => {
+  const movies= useSelector( state => state.movies );
   const {id}= useParams();
   //find movie with id match form store
-  const selectedMovie= props.movies.filter(movie => {
+  const selectedMovie= movies.filter(movie => {
     // console.log('id:', id);
     return (parseInt(movie.id) === parseInt(id));
   });
@@ -23,13 +25,4 @@ const MovieDetails = (props) => {
   )
 }//end MovieDetails
 
-const mapStateToProps= state => {
-  return{
-    movies: state.movies
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  {}
-)(MovieDetails);
+export default MovieDetails;

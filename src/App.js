@@ -5,7 +5,7 @@ import {Route} from 'react-router-dom';
 import {getData} from './actions/';
 
 //redux
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 //components
 import MovieCont from './components/MovieCont';
@@ -16,11 +16,13 @@ import MovieDetails from './components/MovieDetails';
 //styles
 import './components/sass/index.scss';
 
-const App= props => {
+const App= () => {
+  const isLoading= useSelector(state => state.isLoading);
+  const dispatch= useDispatch();
 
   useEffect(() => {
     //get initial movie list data on load
-    props.getData();
+    dispatch(getData());
   }, []);
 
   return (
@@ -31,7 +33,7 @@ const App= props => {
       </Route>
 
         <Route exact path= '/'>
-          {props.isLoading ? <Loader /> : null}
+          {isLoading ? <Loader /> : null}
           <MovieCont />
         </Route>
 
@@ -43,13 +45,4 @@ const App= props => {
   );
 }//end App
 
-  const mapStateToProps= state => {
-    return{
-      isLoading: state.isLoading
-    }
-  }//end mapStateToProps
-
-export default connect(
-  mapStateToProps,
-  {getData},
-  )(App);
+export default App;
