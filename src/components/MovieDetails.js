@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -11,16 +11,29 @@ import {connect} from 'react-redux';
 const MovieDetails = () => {
   const movies= useSelector( state => state.movies );
   const {id}= useParams();
+  console.log('movies: ',movies)
+
   //find movie with id match form store
   const selectedMovie= movies.filter(movie => {
     // console.log('id:', id);
     return (parseInt(movie.id) === parseInt(id));
   });
+
   return (
     <div className= 'movieDetails'>
-      <p>{` Id: ${id} `}</p>
-      <p>{`you selected: ${selectedMovie.title}`}</p>
-      {console.log('selectedMovie:', selectedMovie)}
+      {
+        selectedMovie && selectedMovie.map(movie => {
+          return(
+            <div key= {movie.id}>
+              <p>{` Id: ${movie.id} `}</p>
+              <p>{`you selected: ${movie.title}`}</p>
+              {console.log('selectedMovie:', movie)}
+              
+            </div>
+
+          )
+        })
+      }
     </div>
   )
 }//end MovieDetails
