@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 //components
 
 //styles
+import './sass/MovieDetails.scss';
 
 const MovieDetails = () => {
   const movies= useSelector( state => state.movies );
@@ -15,26 +16,31 @@ const MovieDetails = () => {
 
   //find movie with id match form store
   const selectedMovie= movies.filter(movie => {
-    // console.log('id:', id);
     return (parseInt(movie.id) === parseInt(id));
   });
 
   return (
-    <div className= 'movieDetails'>
+    <>
       {
         selectedMovie && selectedMovie.map(movie => {
           return(
-            <div key= {movie.id}>
-              <p>{` Id: ${movie.id} `}</p>
-              <p>{`you selected: ${movie.title}`}</p>
-              {console.log('selectedMovie:', movie)}
-              
-            </div>
+            <div key= {movie.id} className= 'movieDetailsCont'>
 
+
+              <div className= 'detailsImageCont'>
+                <img alt= 'movie image' src= {movie.posterURL} />
+              </div>
+
+              <div className= 'detailsText'>
+              <h3>{`you selected: ${movie.title}`}</h3>
+
+              </div>
+
+            </div>
           )
         })
       }
-    </div>
+    </>
   )
 }//end MovieDetails
 

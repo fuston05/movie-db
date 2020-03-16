@@ -21,30 +21,43 @@ const MovieCont = () => {
   const [posterBaseURL, setPosterBaseURL]= useState('');
   const movies= useSelector(state => state.movies);
 
+  // formats the poster url onto the movie object per api docs
+  const addImageURLS= () => {
+    let newArr= movies.map( movie => {
+      return movie.poster= `${posterBaseURL}${movie.poster_path}`;
+    });
+    return{
+      ...movies, newArr
+    }
+  }//end addImageURLS
+
   useEffect(() => {
     axiosWithAuth('/configuration?', 3)
       .get()
       .then(res => {
+        //build the base url to get images per api docs
         console.log('configuration res data: ', res.data);
         let url= res.data.images.base_url;
         let fileSize= 'original';
         let posterBase= `${url}${fileSize}/`;
         setPosterBaseURL(posterBase);
-
+        addImageURLS();
       })
       .catch(err => {console.log('configuration err: ', err);})
   }, [])
 
+
   return (
     <div className='mainCont'>
       <div className='movieCont'>
+        {console.log('movies: ', movies)}
         {//loop through movies list
           movies.map(movie => {
+            movie.posterURL= `${posterBaseURL}${movie.poster_path}`;
             return (
               <Movie
               movie= {movie}
               key={movie.id}
-              poster= { `${posterBaseURL}${movie.poster_path}` }
               />) 
             })//end map
           }

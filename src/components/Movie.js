@@ -7,9 +7,9 @@ import {Link} from 'react-router-dom';
 import './sass/Movie.scss';
 
 const Movie = ({ 
-  movie, 
-  poster
+  movie
 }) => {
+  console.log('url: ', movie.posterURL);
   return (
     <div className='movieCard'>
         <div className= 'imageCont'>
@@ -17,7 +17,7 @@ const Movie = ({
           <div className= 'rating'>{movie.vote_average}</div>
           <img 
             alt= 'movie image'
-            src= {poster}
+            src= {movie.posterURL}
           />
         </Link>
         </div> {/* end imageCont */}
