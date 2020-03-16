@@ -9,7 +9,7 @@ import './sass/Movie.scss';
 const Movie = ({ 
   movie
 }) => {
-  console.log('url: ', movie.posterURL);
+  
   return (
     <div className='movieCard'>
         <div className= 'imageCont'>

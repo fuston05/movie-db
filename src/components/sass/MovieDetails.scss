@@ -1,0 +1,22 @@
+@import './mix-ins.scss';
+
+.movieDetailsCont{
+  @include dFlex(row, space-evenly, center);
+  padding: 2%;
+  width: 100%;
+
+  .detailsImageCont{
+    @include dFlex(row, center, center);
+    width: 50%;
+
+    img{
+      max-height: 80vh;
+      margin: 0 auto;
+    }
+  }//end detailsImageCont
+
+  .detailsText{
+    width: 40%;
+  }
+
+}//end movieDetailsCont
