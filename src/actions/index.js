@@ -25,3 +25,8 @@ export const getData = () => dispatch => {
     })
 
 }//end getData
+
+export const updateURLS= (newArr) => dispatch => {
+  console.log('updateURLS called: ', newArr);
+  dispatch({type: UPDATE_MOVIES, payload: newArr })
+}//end updateURLS

@@ -4,7 +4,8 @@ import axios from 'axios';
 import {CREATION} from '../res/common';
 
 //redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {updateURLS} from '../actions';
 
 //utils
 import {axiosWithAuth} from '../utils/axiosWithAuth';
@@ -20,15 +21,18 @@ import './sass/MovieCont.scss';
 const MovieCont = () => {
   const [posterBaseURL, setPosterBaseURL]= useState('');
   const movies= useSelector(state => state.movies);
+  const dispatch= useDispatch();
 
   // formats the poster url onto the movie object per api docs
   const addImageURLS= () => {
-    let newArr= movies.map( movie => {
-      return movie.poster= `${posterBaseURL}${movie.poster_path}`;
+    let newArr= [];
+    movies.map( movie => {
+      movie.posterURL= `${posterBaseURL}${movie.poster_path}`;
+      movie.backDropURL= `${posterBaseURL}${movie.backdrop_path}`;
+      return newArr.push(movie);
     });
-    return{
-      ...movies, newArr
-    }
+    console.log('new arr: ', newArr);
+    dispatch(updateURLS(newArr));
   }//end addImageURLS
 
   useEffect(() => {
@@ -53,7 +57,6 @@ const MovieCont = () => {
         {console.log('movies: ', movies)}
         {//loop through movies list
           movies.map(movie => {
-            movie.posterURL= `${posterBaseURL}${movie.poster_path}`;
             return (
               <Movie
               movie= {movie}

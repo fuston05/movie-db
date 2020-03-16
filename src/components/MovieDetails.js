@@ -26,13 +26,14 @@ const MovieDetails = () => {
           return(
             <div key= {movie.id} className= 'movieDetailsCont'>
 
-
               <div className= 'detailsImageCont'>
+                {/* <img alt= 'movie image' src= {movie.posterURL} /> */}
                 <img alt= 'movie image' src= {movie.posterURL} />
               </div>
 
               <div className= 'detailsText'>
-              <h3>{`you selected: ${movie.title}`}</h3>
+              <h3>{`${movie.title} `}<span>{`(${(movie.release_date).slice(0, 4)})`}</span></h3>
+              
 
               </div>
 
