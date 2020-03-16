@@ -28,7 +28,7 @@ const MovieDetails = () => {
 
               <div className= 'detailsImageCont'>
                 {/* <img alt= 'movie image' src= {movie.posterURL} /> */}
-                <img alt= 'movie image' src= {movie.posterURL} />
+                <img alt= 'movie image' src= {movie.backDropURL} />
               </div>
 
               <div className= 'detailsText'>
