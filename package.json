@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "acorn": "^7.1.1",
     "axios": "^0.19.2",
     "node-sass": "^4.13.1",
     "react": "^16.13.0",
@@ -38,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "acorn": "^7.1.1"
   }
 }
