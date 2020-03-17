@@ -1,13 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-import {CREATION} from '../res/common';
 
 //redux
 import { useSelector } from 'react-redux';
-
-//utils
-import {axiosWithAuth} from '../utils/axiosWithAuth';
 
 //components
 import Movie from './Movie';
@@ -18,48 +13,20 @@ import { RouletteButton } from './RouletteButton';
 import './sass/MovieCont.scss';
 
 const MovieCont = () => {
-  const [posterBaseURL, setPosterBaseURL]= useState('');
-  const movies= useSelector(state => state.movies);
-
-  // formats the poster url onto the movie object per api docs
-  const addImageURLS= () => {
-    let newArr= [];
-    movies.map( movie => {
-      movie.posterURL= `${posterBaseURL}${movie.poster_path}`;
-      movie.backDropURL= `${posterBaseURL}${movie.backdrop_path}`;
-      return newArr.push(movie);
-    });
-  }//end addImageURLS
-
-  useEffect(() => {
-    axiosWithAuth('/configuration?', 3)
-      .get()
-      .then(res => {
-        //build the base url to get images per api docs
-        console.log('configuration res data: ', res.data);
-        let url= res.data.images.base_url;
-        let fileSize= 'original';
-        let posterBase= `${url}${fileSize}/`;
-        setPosterBaseURL(posterBase);
-
-      })
-      .catch(err => {console.log('configuration err: ', err);})
-  }, [])
-
+  const movies = useSelector(state => state.movies);
 
   return (
     <div className='mainCont'>
       <div className='movieCont'>
-        {console.log('movies: ', movies)}
         {//loop through movies list
           movies.map(movie => {
             return (
               <Movie
-              movie= {movie}
-              key={movie.id}
-              />) 
-            })//end map
-          }
+                movie={movie}
+                key={movie.id}
+              />)
+          })//end map
+        }
       </div> {/* end movieCont */}
 
       <div className='mainButtonCont'>
